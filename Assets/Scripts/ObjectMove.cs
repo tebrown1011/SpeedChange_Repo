@@ -10,10 +10,12 @@ public class ObjectMove : MonoBehaviour
 
     [SerializeField] private float objectSpeed;
 
+   
+
 
     void Start()
     {
-
+       
     }
 
 
@@ -37,16 +39,16 @@ public class ObjectMove : MonoBehaviour
         {
             transform.position += new Vector3(0f, objectSpeed * Time.deltaTime);
         }
+  
+    }
 
+    void OnEnable()
+    {
+        Timer.changeSpeed += SpeedChange;
+    }
 
-        if(timeManager.GetComponent<Timer>().slowDown == true)
-        {
-            objectSpeed = 0.5f;
-        }
-
-        else if (timeManager.GetComponent<Timer>().slowDown == false)
-        {
-            objectSpeed = 1f;
-        }
+    public void SpeedChange(int num)
+    {
+        objectSpeed = Random.Range(1f, 3f);
     }
 }

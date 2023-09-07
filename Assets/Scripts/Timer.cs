@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using System;
 
 public class Timer : MonoBehaviour
 {
@@ -10,22 +12,17 @@ public class Timer : MonoBehaviour
     [SerializeField] private float countdown;
     [SerializeField] private float countdownSpeed;
 
-    public bool slowDown;
+    public static event Action<int> changeSpeed;
 
     
     void Update()
     {
         timerBar.rectTransform.localScale = new Vector3(countdown, timerBar.rectTransform.localScale.y);
 
-        if(countdown <= 0f && slowDown == false)
+        if (countdown <= 0f)
         {
-            slowDown = true;
             countdown = 0.8f;
-        }
-        else if (countdown <= 0f && slowDown == true)
-        {
-            slowDown = false;
-            countdown = 0.8f;
+            changeSpeed.Invoke(0);
         }
 
         countdown -= countdownSpeed * Time.deltaTime;

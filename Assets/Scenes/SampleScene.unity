@@ -592,7 +592,6 @@ MonoBehaviour:
   timerBar: {fileID: 1470236493}
   countdown: 0.8
   countdownSpeed: 0.2
-  slowDown: 0
 --- !u!4 &1554302140
 Transform:
   m_ObjectHideFlags: 0
